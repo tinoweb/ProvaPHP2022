@@ -73,13 +73,10 @@ function calculaDiasAno($anoIn,$anoFn)
 		if(isAnoBissexto($value)){
 			$anoBi++;
 			$diasAnoRetorna+=366;
-
 		}else{
 			$diasAnoRetorna+=365;
 		}
 	}
-
-	// echo "ano Bi $anoBi <br>";
 	return $diasAnoRetorna;
 }
 
@@ -113,7 +110,6 @@ function getDayMeses($statusAno)
 		$mesAnoDias[1] = 29;
 		return $mesAnoDias;
 	}
-
 	return $mesAnoDias;
 }
 
@@ -122,7 +118,7 @@ function checkDayMesesAnoBisexto($ano=false)
 	if(isAnoBissexto($ano)){
 		return getDayMeses(true);
 	}
-		return getDayMeses(false);
+	return getDayMeses(false);
 }
 
 function verificaFevereiroBisexto($rangeAno)
@@ -139,7 +135,6 @@ function verificaFevereiroBisexto($rangeAno)
 			}
 		}
 	}
-
 	$totalMesBiss = count($MesBissesto);
 	return $totalMesBiss;
 }

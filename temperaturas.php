@@ -7,8 +7,26 @@
 * @return int A temperatura mais proxima de zero
 **/
 function menorTemperatura($temperaturas) {
-	
-	return(0);
+		if(empty($temperaturas)){
+        return 0;
+    }
+
+    $proximo = 0;
+    for ($i = 0; $i < count($temperaturas) ; $i++) {
+        if ($proximo === 0) {
+            $proximo = $temperaturas[$i];
+        } else if ($temperaturas[$i] > 0 && $temperaturas[$i] <= abs($proximo)) {
+					$proximo = $temperaturas[$i];
+        } else if ($temperaturas[$i] < 0 && -$temperaturas[$i] < abs($proximo)) {
+					if($temperaturas[$i] < 0 and in_array(0, $temperaturas)){
+						$proximo = 0;
+					}else{
+						$proximo = $temperaturas[$i];
+					}
+        }
+    }
+
+    return $proximo;
 }
 
 
@@ -17,6 +35,7 @@ $temperaturas = array( 17, 32, 14, 21 );
 $resultadoEsperado = 14;
 $resultado = menorTemperatura($temperaturas);
 verificaResultado("01", $resultadoEsperado, $resultado);
+// die;
 
 
 /***** Teste 02 *****/
@@ -24,6 +43,7 @@ $temperaturas = array( 27, -8, -12, 9 );
 $resultadoEsperado = -8;
 $resultado = menorTemperatura($temperaturas);
 verificaResultado("02", $resultadoEsperado, $resultado);
+// die;
 
 
 /***** Teste 03 *****/
@@ -74,8 +94,10 @@ verificaResultado("09", $resultadoEsperado, $resultado);
 function verificaResultado($nTeste, $resultadoEsperado, $resultado) {
 	if(intval($resultadoEsperado) === intval($resultado)) {
 		echo "Teste $nTeste passou.\n";
+		echo "<br>";
 	} else {
 		echo "Teste $nTeste NAO passou (Resultado esperado = $resultadoEsperado, Resultado obtido = $resultado).\n";
+		echo "<br>";
 	}
 }
 
